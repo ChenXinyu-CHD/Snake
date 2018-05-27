@@ -20,7 +20,7 @@ private:
 	Queue<Position> snakeBody;
 	Direct direct;
 public:
-	Snake();
+	Snake(Position headPosition);
 	~Snake();
 
 	void move();
@@ -30,7 +30,7 @@ public:
 	Position getTailPosition();
 
 	Direct getDirect();
-	void setDirect();
+	void setDirect(Direct direct);
 };
 
 #endif /* SNAKE_H */

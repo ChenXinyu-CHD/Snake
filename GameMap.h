@@ -9,7 +9,6 @@
 #define GAME_MAP_H
 
 #include <string>
-#include "Food.h"
 #include "Snake.h"
 
 #include "debug_permission.h"
@@ -23,7 +22,7 @@ private:
 	char map[MAX_HIGHT][MAX_LENGTH];
 	bool gameStatus;
 	Snake *snake;
-	Food food;
+	Position FoodPosition;
 public:
 	GameMap(Snake *snake);
 	~GameMap();

@@ -9,6 +9,7 @@
 
 Snake::Snake(Position headPosition):
 	snakeBody(),
+	length(0),
 	direct(right)
 {
 	snakeBody.push(headPosition);
@@ -27,7 +28,10 @@ bool Snake::tryToEatFood(Position foodPosition)
 	if(newHeadPosition != foodPosition)
 		snakeBody.pop();
 	else
+	{
 		result = true;
+		++length;
+	}
 
 	return result;
 }
@@ -71,3 +75,6 @@ Position Snake::getThePositionFacingTo()
 	}
 	return result;
 }
+
+int Snake::getLength()
+{return length;}

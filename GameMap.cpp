@@ -9,7 +9,6 @@
 #include <cstdlib>
 
 GameMap::GameMap(Snake *snake_p):
-	map({"\0"}),
 	snake(snake_p),
 	foodPosition(createFood())
 {
@@ -57,7 +56,7 @@ bool GameMap::hasNotGameOver()
 Position GameMap::createFood()
 {
 	static unsigned int random = (unsigned)time(0);
-	random = (random * 16807) % (MAX_HIGHT * MAX_LENGTH);
+	random = (random * 16807) % (MAX_HIGHT * MAX_LENGTH - snake->getLength());
 
 	Position result;
 

@@ -18,6 +18,7 @@ public:
 	{left,right,up,down};
 private:
 	Queue<Position> snakeBody;
+	int length;
 	Direct direct;
 public:
 	Snake(Position headPosition);
@@ -34,6 +35,8 @@ public:
 	void setDirect(Direct direct);
 
 	Position getThePositionFacingTo();
+
+	int getLength();
 };
 
 #endif /* SNAKE_H */

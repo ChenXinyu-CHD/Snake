@@ -25,3 +25,14 @@ void Position::set_x(int x)
 {posi[0] = x;}
 void Position::set_y(int y)
 {posi[1] = y;}
+
+bool Position::operator==(Position position)
+{
+	return (
+		posi[0] == position.posi[0] && 
+		posi[1] == position.posi[1]
+	);
+}
+
+bool Position::operator!=(Position position)
+{return !this->operator==(position);}

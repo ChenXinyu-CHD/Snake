@@ -22,6 +22,9 @@ public:
 
 	void set_x(int x);
 	void set_y(int y);
+
+	bool operator==(Position position);
+	bool operator!=(Position position);
 };
 
 #endif /* POSITION_H */

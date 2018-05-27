@@ -17,30 +17,19 @@ Snake::Snake(Position headPosition):
 Snake::~Snake()
 { /* Nothing to do; */ }
 
-void Snake::grow()
+bool Snake::tryToEatFood(Position foodPosition)
 {
-	Position newHeadPosition = getHeadPosition();
-	switch (direct)
-	{
-		case left:
-			newHeadPosition.set_x(newHeadPosition.get_x() - 1);
-			break;
-		case right:
-			newHeadPosition.set_x(newHeadPosition.get_x() + 1);
-			break;
-		case up:
-			newHeadPosition.set_y(newHeadPosition.get_y() + 1);
-			break;
-		case down:
-			newHeadPosition.set_y(newHeadPosition.get_y() - 1);
-	}
-	snakeBody.push(newHeadPosition);
-}
+	bool result = false;
 
-void Snake::move()
-{
-	grow();			//在头部伸长一格
-	snakeBody.pop();	//在尾部缩短一格
+	Position newHeadPosition = getThePositionFacingTo();
+	snakeBody.push(newHeadPosition);
+
+	if(newHeadPosition != foodPosition)
+		snakeBody.pop();
+	else
+		result = true;
+
+	return result;
 }
 
 Position Snake::getHeadPosition()
@@ -61,4 +50,24 @@ Snake::Direct Snake::getDirect()
 void Snake::setDirect(Snake::Direct direct)
 {
 	this->direct = direct;
+}
+
+Position Snake::getThePositionFacingTo()
+{
+	Position result = getHeadPosition();
+	switch (direct)
+	{
+		case left:
+			result.set_x(result.get_x() - 1);
+			break;
+		case right:
+			result.set_x(result.get_x() + 1);
+			break;
+		case up:
+			result.set_y(result.get_y() + 1);
+			break;
+		case down:
+			result.set_y(result.get_y() - 1);
+	}
+	return result;
 }

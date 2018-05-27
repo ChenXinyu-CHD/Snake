@@ -20,16 +20,15 @@ public:
 	static const short MAX_LENGTH = 30;
 private:
 	char map[MAX_HIGHT][MAX_LENGTH];
-	bool gameStatus;
 	Snake *snake;
-	Position FoodPosition;
+	Position foodPosition;
 public:
 	GameMap(Snake *snake);
-	~GameMap();
-
-	void updateGameMap();
-	std::string getNextLine();
+	void update();				//更新游戏地图（执行贪吃蛇的移动和游戏状态检查）
+						//游戏每进行一帧地图更新一次
 	bool hasNotGameOver();
+private:
+	Position createFood();
 DEBUG_PERMISSION:
 	static bool debug();
 };

@@ -23,14 +23,17 @@ public:
 	Snake(Position headPosition);
 	~Snake();
 
-	void move();
-	void grow();
+	bool tryToEatFood(Position foodPosition);		//尝试吃食物
+								//如果可以吃到则向前增长一格,返回true
+								//如果吃不到则向前移动一格，返回false
 
 	Position getHeadPosition();
 	Position getTailPosition();
 
 	Direct getDirect();
 	void setDirect(Direct direct);
+
+	Position getThePositionFacingTo();
 };
 
 #endif /* SNAKE_H */

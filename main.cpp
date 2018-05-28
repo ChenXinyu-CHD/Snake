@@ -6,6 +6,7 @@
  * */
 
 #include "GameMap.h"
+#include "enviroment.h"
 
 int main()
 {

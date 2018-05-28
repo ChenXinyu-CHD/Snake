@@ -1,5 +1,5 @@
 /**
- * name : Snake.h;
+ * name : Player.h;
  * date : 18/4/28;
  * g++ version : 7.3.1;
  * g++ options : -O2;

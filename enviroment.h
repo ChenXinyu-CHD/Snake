@@ -42,14 +42,14 @@ DWORD oldMode,newMode;
 void changeInputMode()
 {
 	hstdin = GetStdHandle(STD_INPUT_HANDLE);
-	GetConcoleMode(hstdin,&oldMode);
+	GetConsoleMode(hstdin,&oldMode);
 	newMode = oldMode & ~(ENABLE_LINE_INPUT | ENABLE_ECHO_INPUT);
-	SetConcoleMode(hstdin,newMode);
+	SetConsoleMode(hstdin,newMode);
 }
 
 void resetInputMode()
 {
-	SetConcoleMode(hstdin,oldMode);
+	SetConsoleMode(hstdin,oldMode);
 }
 
 #endif /* WINDOWS */

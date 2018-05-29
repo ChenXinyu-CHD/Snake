@@ -5,11 +5,19 @@
  * g++ options : -O2;
  * */
 
-#include "GameMap.h"
+//#include "GameMap.h"
 #include "enviroment.h"
+#include <stdio.h>
 
 int main()
 {
+	changeInputMode();
+
+	char a;
+	a = getchar();
+	printf("%d\n",a);
+
+	resetInputMode();
 
 	return 0;
 };

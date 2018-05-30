@@ -51,9 +51,11 @@ void resetInputMode()
 
 #include <windows.h>
 
-#define THREAD_FUN(func_name,args) DWORD WINAPI func_name(LPVOID args)
+#define THREAD_FUNC(func_name,args) DWORD WINAPI func_name(LPVOID args)
+#define RETURN return
 
 typedef HANDLE Thread;
+typedef DWORD Time;
 
 Thread createThread(LPTHREAD_START_ROUTINE ThreadFunc,LPVOID args)
 {
@@ -74,6 +76,12 @@ void changeInputMode()
 void resetInputMode()
 {
 	SetConsoleMode(hstdin,oldMode);
+}
+
+void waitThreadEnded(Thread thread,Time time)
+{
+    WaitForSingleObject(thread,time);
+    CloseHandle(thread);
 }
 
 #endif /* WINDOWS */

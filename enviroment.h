@@ -11,6 +11,21 @@ void resetInputMode();				//重设输入模式；
 #include <unistd.h>
 #include <termios.h>
 #include <stdio.h>
+#include <pthread.h>
+
+#define THREAD_FUNC(func_name,args) void * func_name(void *args)
+
+#define RETURN(i) pthread_exit(i)
+
+typedef pthread_t Thread;
+
+Thread createThread(void (*ThreadFunc(void *)),void *args)
+{
+	Thread result;
+	pthread_create(&result,NULL,ThreadFunc,args);
+
+	return result;
+}
 
 termios initialSettings,newSettings;
 
@@ -35,6 +50,15 @@ void resetInputMode()
 #ifdef _WIN32 || _WIN64
 
 #include <Windows.h>
+
+#define THREAD_FUN(func_name,args) DWORD WINAPI func_name(LPVOID args)
+
+typedef HANDLE Thread;
+
+Thread createThread(LPTHREAD_START_TOUTINE ThreadFunc,LPVOID args)
+{
+	return CreateThread(NULL,0,ThreadFunc,args,0,NULL);
+}
 
 HANDLE hstdin;
 DWORD oldMode,newMode;

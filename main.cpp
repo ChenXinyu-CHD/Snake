@@ -5,11 +5,15 @@
  * g++ options : -O2;
  * */
 
-//#include "GameMap.h"
+//if you use linux
+//please build it with
+//-lpthread;
+
+#include "GameMap.h"
 #include "enviroment.h"
 #include <stdio.h>
 
-int main()
+THREAD_FUNC(input,args)
 {
 	changeInputMode();
 
@@ -19,5 +23,12 @@ int main()
 
 	resetInputMode();
 
-	return 0;
+	RETURN(0);
+}
+
+int main()
+{
+	Thread thread = createThread(input,NULL);
+
+	RETURN(0);
 };

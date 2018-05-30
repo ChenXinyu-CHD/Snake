@@ -46,6 +46,11 @@ void resetInputMode()
 	tcsetattr(fileno(stdin),TCSANOW,&initialSettings);
 }
 
+void waitThreadEnded(Thread thread)
+{
+    pthread_join(thread,NULL);
+}
+
 #else
 #if defined _WIN32 || _WIN64
 
@@ -78,9 +83,9 @@ void resetInputMode()
 	SetConsoleMode(hstdin,oldMode);
 }
 
-void waitThreadEnded(Thread thread,Time time)
+void waitThreadEnded(Thread thread)
 {
-    WaitForSingleObject(thread,time);
+    WaitForSingleObject(thread,INFINITE);
     CloseHandle(thread);
 }
 

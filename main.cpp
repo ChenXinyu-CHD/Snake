@@ -30,7 +30,7 @@ int main()
 {
 	Thread thread = createThread(input,NULL);
 
-	waitThreadEnded(thread,INFINITE);
+	waitThreadEnded(thread);
 
 	RETURN(0);
 };

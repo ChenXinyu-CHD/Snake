@@ -47,15 +47,15 @@ void resetInputMode()
 }
 
 #else
-#ifdef _WIN32 || _WIN64
+#if defined _WIN32 || _WIN64
 
-#include <Windows.h>
+#include <windows.h>
 
 #define THREAD_FUN(func_name,args) DWORD WINAPI func_name(LPVOID args)
 
 typedef HANDLE Thread;
 
-Thread createThread(LPTHREAD_START_TOUTINE ThreadFunc,LPVOID args)
+Thread createThread(LPTHREAD_START_ROUTINE ThreadFunc,LPVOID args)
 {
 	return CreateThread(NULL,0,ThreadFunc,args,0,NULL);
 }

@@ -14,8 +14,11 @@
 class Snake
 {
 public:
-	enum Direct
-	{left,right,up,down};
+	typedef short Direct;
+	static const int left = -1;
+	static const int right = ~left;
+	static const int up = 2;
+	static const int down = ~up;
 private:
 	Queue<Position> snakeBody;
 	int length;

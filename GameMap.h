@@ -16,10 +16,11 @@
 class GameMap
 {
 public:
-	static const short MAX_HIGHT = 20;
-	static const short MAX_LENGTH = 30;
+	static const short MAX_HIGHT = 30;
+	static const short MAX_LENGTH = 60;
+	typedef char Map[MAX_HIGHT][MAX_LENGTH];
 private:
-	char map[MAX_HIGHT][MAX_LENGTH];
+	Map map;
 	Snake *snake;
 	Position foodPosition;
 public:
@@ -27,6 +28,8 @@ public:
 	void update();				//更新游戏地图（执行贪吃蛇的移动和游戏状态检查）
 						//游戏每进行一帧地图更新一次
 	bool hasNotGameOver();
+	Snake *getSnake_ptr();
+	Map &getMap();
 private:
 	Position createFood();
 DEBUG_PERMISSION:

@@ -9,7 +9,7 @@
 
 Snake::Snake(Position headPosition):
 	snakeBody(),
-	length(0),
+	length(1),
 	direct(right)
 {
 	snakeBody.push(headPosition);
@@ -38,12 +38,14 @@ bool Snake::tryToEatFood(Position foodPosition)
 
 Position Snake::getHeadPosition()
 {
-	return snakeBody.getTop();
+	//return snakeBody.getTop();
+	return snakeBody.getBottom();
 }
 
 Position Snake::getTailPosition()
 {
-	return snakeBody.getBottom();
+	//return snakeBody.getBottom();
+	return snakeBody.getTop();
 }
 
 Snake::Direct Snake::getDirect()
@@ -53,7 +55,8 @@ Snake::Direct Snake::getDirect()
 
 void Snake::setDirect(Snake::Direct direct)
 {
-	this->direct = direct;
+	if(direct != ~(this->direct))
+		this->direct = direct;
 }
 
 Position Snake::getThePositionFacingTo()
@@ -68,10 +71,10 @@ Position Snake::getThePositionFacingTo()
 			result.set_x(result.get_x() + 1);
 			break;
 		case up:
-			result.set_y(result.get_y() + 1);
+			result.set_y(result.get_y() - 1);
 			break;
 		case down:
-			result.set_y(result.get_y() - 1);
+			result.set_y(result.get_y() + 1);
 	}
 	return result;
 }

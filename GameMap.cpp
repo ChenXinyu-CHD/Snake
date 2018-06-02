@@ -7,11 +7,12 @@
 
 #include "GameMap.h"
 #include <cstdlib>
+#include <ctime>
 
 GameMap::GameMap(Snake *snake_p):
-	snake(snake_p),
-	foodPosition(createFood())
+	snake(snake_p)
 {
+	srand((unsigned)time(0));
 	for(int i = 0;i < MAX_HIGHT;++i)
 		for(int j = 0;j < MAX_LENGTH;++j)
 			if
@@ -22,6 +23,8 @@ GameMap::GameMap(Snake *snake_p):
 				map[i][j] = 'X';
 			else
 				map[i][j] = ' ';
+
+	foodPosition = createFood();
 
 	Position snakeHeadPosition = snake->getHeadPosition();
 	map[snakeHeadPosition.get_y()][snakeHeadPosition.get_x()] = '*';
@@ -41,6 +44,7 @@ void GameMap::update()
 
 		Position newSnakeHeadPosition = snake->getHeadPosition();
 		map[newSnakeHeadPosition.get_y()][newSnakeHeadPosition.get_x()] = '*';
+		map[foodPosition.get_y()][foodPosition.get_x()] = '+';
 	}
 }
 
@@ -55,20 +59,26 @@ bool GameMap::hasNotGameOver()
 
 Position GameMap::createFood()
 {
-	static unsigned int random = (unsigned)time(0);
-	random = (random * 16807) % (MAX_HIGHT * MAX_LENGTH - snake->getLength());
-
+	int random = rand() % (MAX_LENGTH * MAX_HIGHT - snake->getLength());
 	Position result;
 
 	int count = 0;
-	int x,y;
-	while(count < random)
-		for(y = 1;y < MAX_HIGHT-1;++y)
-			for(x = 1;x < MAX_LENGTH-1;++x)
-				if(map[y][x] == ' ')
-					++count;
+	int x ,y;
+	for(y = 1;y < MAX_HIGHT-1;++y)
+		for(x = 1;x < MAX_LENGTH-1;++x)
+			if(map[y][x] == ' ' && count < random)
+				++count;
+			else if(count == random && map[y][x] == ' ')
+				goto out;
+out:
 	result.set_y(y);
 	result.set_x(x);
 
 	return result;
 }
+
+Snake * GameMap::getSnake_ptr()
+{return snake;}
+
+GameMap::Map &GameMap::getMap()
+{return map;}

@@ -12,6 +12,8 @@ void resetInputMode();				//重设输入模式；
 #include <termios.h>
 #include <stdio.h>
 #include <pthread.h>
+#include <sys/time.h>
+#include <sys/select.h>
 
 #define THREAD_FUNC(func_name,args) void * func_name(void *args)
 
@@ -49,6 +51,15 @@ void resetInputMode()
 void waitThreadEnded(Thread thread)
 {
     pthread_join(thread,NULL);
+}
+
+void sleap_now(int time)
+{
+	timeval tv;
+	tv.tv_sec = 0;
+	tv.tv_usec = 1000 * time;
+
+	select(0,NULL,NULL,NULL,&tv);
 }
 
 #else

@@ -59,7 +59,7 @@ bool GameMap::hasNotGameOver()
 
 Position GameMap::createFood()
 {
-	int random = rand() % ((MAX_LENGTH-2) * (MAX_HIGHT-2) - snake->getLength());
+	/*int random = rand() % ((MAX_LENGTH-2) * (MAX_HIGHT-2) - snake->getLength());
 	Position result;
 
 	int count = 0;
@@ -72,7 +72,20 @@ Position GameMap::createFood()
 				goto out;
 out:
 	result.set_y(y);
+	result.set_x(x);*/
+
+	int x = 0;
+	int y = 0;
+	Position result;
+
+	while(map[y][x] != ' ')
+    {
+        y = rand() % (MAX_HIGHT - 4) + 2;
+        x = rand() % (MAX_LENGTH - 4) + 2;
+    }
+
 	result.set_x(x);
+	result.set_y(y);
 
 	return result;
 }

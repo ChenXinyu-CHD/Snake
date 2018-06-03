@@ -66,6 +66,7 @@ void sleap_now(int time)
 #if defined _WIN32 || _WIN64
 
 #include <windows.h>
+#include <stdlib.h>
 
 #define THREAD_FUNC(func_name,args) DWORD WINAPI func_name(LPVOID args)
 #define RETURN return
@@ -98,6 +99,19 @@ void waitThreadEnded(Thread thread)
 {
     WaitForSingleObject(thread,INFINITE);
     CloseHandle(thread);
+}
+
+void sleap_now(int time)
+{
+    Sleep(time);
+}
+
+void clearScreen()
+{
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD coordScreen = { 0, 0 };    // home for the cursor
+
+    SetConsoleCursorPosition( hConsole, coordScreen );
 }
 
 #endif /* WINDOWS */

@@ -3,3 +3,6 @@ a.out
 Snake
 *.exe
 *.obj
+*.cbp
+*.layout
+*.depend

@@ -67,16 +67,6 @@ void printMap(GameMap::Map map)
 	}
 }
 
-void clearScreen()
-{
-	for(int i = 0;i < GameMap::MAX_HIGHT;++i)
-	{
-		for(int j = 0;j < GameMap::MAX_HIGHT;++j)
-			putchar('\b');
-		putchar('\b');
-	}
-}
-
 THREAD_FUNC(output,args)
 {
 	GameMap *gameMap = (GameMap *)args;

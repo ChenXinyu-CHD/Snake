@@ -16,8 +16,8 @@
 class GameMap
 {
 public:
-	static const short MAX_HIGHT = 30;
-	static const short MAX_LENGTH = 60;
+	static const short MAX_HIGHT = 20;
+	static const short MAX_LENGTH = 40;
 	typedef char Map[MAX_HIGHT][MAX_LENGTH];
 private:
 	Map map;

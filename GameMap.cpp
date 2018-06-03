@@ -59,13 +59,13 @@ bool GameMap::hasNotGameOver()
 
 Position GameMap::createFood()
 {
-	int random = rand() % (MAX_LENGTH * MAX_HIGHT - snake->getLength());
+	int random = rand() % ((MAX_LENGTH-2) * (MAX_HIGHT-2) - snake->getLength());
 	Position result;
 
 	int count = 0;
 	int x ,y;
-	for(y = 1;y < MAX_HIGHT-2;++y)
-		for(x = 1;x < MAX_LENGTH-2;++x)
+	for(y = 1;y < MAX_HIGHT-1;++y)
+		for(x = 1;x < MAX_LENGTH-1;++x)
 			if(map[y][x] == ' ' && count < random)
 				++count;
 			else if(count == random && map[y][x] == ' ')

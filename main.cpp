@@ -17,7 +17,7 @@
 #include <stdio.h>
 
 const Position FIRST_POSITION_OF_SNAKE(10,10);
-const int UPDATE_TIME = 70;				//70毫秒;
+const int UPDATE_TIME = 200;				//70毫秒;
 
 THREAD_FUNC(input,args)
 {

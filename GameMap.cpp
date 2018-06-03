@@ -64,8 +64,8 @@ Position GameMap::createFood()
 
 	int count = 0;
 	int x ,y;
-	for(y = 1;y < MAX_HIGHT-1;++y)
-		for(x = 1;x < MAX_LENGTH-1;++x)
+	for(y = 1;y < MAX_HIGHT-2;++y)
+		for(x = 1;x < MAX_LENGTH-2;++x)
 			if(map[y][x] == ' ' && count < random)
 				++count;
 			else if(count == random && map[y][x] == ' ')

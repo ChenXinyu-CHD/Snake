@@ -8,20 +8,15 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
-#include "dataStructure/Queue.h"
-#include "Position.h"
+#include <dataStructure/Queue.h>
+#include <Types.h>
 
 class Snake
 {
-public:
-	typedef short Direct;
-	static const int left = -1;
-	static const int right = ~left;
-	static const int up = 2;
-	static const int down = ~up;
 private:
 	Queue<Position> snakeBody;
 	int length;
+public:
 	Direct direct;
 public:
 	Snake(Position headPosition);
@@ -33,9 +28,6 @@ public:
 
 	Position getHeadPosition();
 	Position getTailPosition();
-
-	Direct getDirect();
-	void setDirect(Direct direct);
 
 	Position getThePositionFacingTo();
 

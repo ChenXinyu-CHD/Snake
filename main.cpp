@@ -9,15 +9,14 @@
 //please build it with
 //-lpthread;
 
-#include "GameMap.h"
-#include "Snake.h"
-#include "enviroment.h"
-#include "Position.h"
+#include <GameMap.h>
+#include <Snake.h>
+#include <enviroment.h>
 
 #include <stdio.h>
 
-const Position FIRST_POSITION_OF_SNAKE(10,10);
-const int UPDATE_TIME = 200;				//70毫秒;
+const Position FIRST_POSITION_OF_SNAKE={10,10};
+const int UPDATE_TIME = 200;				//70ms;
 
 THREAD_FUNC(input,args)
 {
@@ -31,25 +30,25 @@ THREAD_FUNC(input,args)
 	{
 		ch = getchar();
 
-		Snake::Direct result;
+		Direct result;
 		switch(ch)
 		{
 			case 'W': case 'w':
-				result = Snake::up;
+				result = Direct::up;
 				break;
 			case 'A': case 'a':
-				result = Snake::left;
+				result = Direct::left;
 				break;
 			case 'S': case 's':
-				result = Snake::down;
+				result = Direct::down;
 				break;
 			case 'D': case 'd':
-				result = Snake::right;
+				result = Direct::right;
 				break;
 			default:
-				result = snake->getDirect();
+				result = snake->direct;
 		}
-		snake->setDirect(result);
+		snake->direct = result;
 	}
 
 	resetInputMode();

@@ -1,22 +1,26 @@
 # This is the makefile
 # use make to build the project
 
-HEADER_FILE = GameMap.h Snake.h Position.h enviroment.h
+HEADER_HOME = include
+GAME_MAP = $(HEADER_HOME)/GameMap.h
+SNAKE = $(HEADER_HOME)/Snake.h
+ENVIROMENT = $(HEADER_HOME)/enviroment.h
+TYPES = $(HEADER_HOME)/Types.h
+HEADER_FILE = $(GAME_MAP) $(SNAKE) $(ENVIROMENT)
 
-Snake: main.o Position.o GameMap.o Snake.o
-	g++ main.o Position.o GameMap.o Snake.o -o Snake -O2 -g -lpthread
+CC = g++ -I $(HEADER_HOME)
+
+Snake: main.o GameMap.o Snake.o
+	$(CC) main.o GameMap.o Snake.o -o Snake -O2 -lpthread
 
 main.o: main.cpp $(HEADER_FILE)
-	g++ main.cpp -o main.o -O2 -c -g
+	$(CC) main.cpp -o main.o -O2 -c
 
-Position.o: Position.cpp Position.h
-	g++ Position.cpp -o Position.o -O2 -c -g
+Snake.o: Snake.cpp $(SNAKE) $(TYPES)
+	$(CC) Snake.cpp -o Snake.o -O2 -c
 
-Snake.o: Snake.h Snake.cpp Position.h dataStructure/*
-	g++ Snake.cpp -o Snake.o -O2 -c -g
-
-GameMap.o: GameMap.cpp GameMap.h Snake.h Position.h
-	g++ GameMap.cpp -o GameMap.o -O2 -c -g
+GameMap.o: GameMap.cpp $(GAME_MAP) $(SNAKE)
+	$(CC) GameMap.cpp -o GameMap.o -O2 -c
 
 clean:
 	rm *.o Snake

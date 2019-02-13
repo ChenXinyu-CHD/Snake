@@ -11,8 +11,6 @@
 #include <string>
 #include "Snake.h"
 
-#include "debug_permission.h"
-
 class GameMap
 {
 public:
@@ -32,8 +30,6 @@ public:
 	Map &getMap();
 private:
 	Position createFood();
-DEBUG_PERMISSION:
-	static bool debug();
 };
 
 #endif /* GAME_MAP_H */

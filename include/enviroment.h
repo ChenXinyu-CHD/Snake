@@ -62,6 +62,11 @@ void sleap_now(int time)
 	select(0,NULL,NULL,NULL,&tv);
 }
 
+void clearScreen()
+{
+	puts("\033[2J");
+}
+
 #else
 #if defined _WIN32 || _WIN64
 

@@ -27,8 +27,8 @@ GameMap::GameMap(Snake *snake_p):
 	foodPosition = createFood();
 
 	Position snakeHeadPosition = snake->getHeadPosition();
-	map[snakeHeadPosition.get_y()][snakeHeadPosition.get_x()] = '*';
-	map[foodPosition.get_y()][foodPosition.get_x()] = '+';
+	map[snakeHeadPosition.Y][snakeHeadPosition.X] = '*';
+	map[foodPosition.Y][foodPosition.X] = '+';
 }
 
 void GameMap::update()
@@ -40,11 +40,11 @@ void GameMap::update()
 		if(snake->tryToEatFood(foodPosition))
 			foodPosition = createFood();
 		else
-			map[oldSnakeTailPosition.get_y()][oldSnakeTailPosition.get_x()] = ' ';
+			map[oldSnakeTailPosition.Y][oldSnakeTailPosition.X] = ' ';
 
 		Position newSnakeHeadPosition = snake->getHeadPosition();
-		map[newSnakeHeadPosition.get_y()][newSnakeHeadPosition.get_x()] = '*';
-		map[foodPosition.get_y()][foodPosition.get_x()] = '+';
+		map[newSnakeHeadPosition.Y][newSnakeHeadPosition.X] = '*';
+		map[foodPosition.Y][foodPosition.X] = '+';
 	}
 }
 
@@ -52,40 +52,25 @@ bool GameMap::hasNotGameOver()
 {
 	Position position = snake->getThePositionFacingTo();
 	return(
-		map[position.get_y()][position.get_x()] == ' ' ||
-		map[position.get_y()][position.get_x()] == '+'
+		map[position.Y][position.X] == ' ' ||
+		map[position.Y][position.X] == '+'
 	);
 }
 
 Position GameMap::createFood()
 {
-	/*int random = rand() % ((MAX_LENGTH-2) * (MAX_HIGHT-2) - snake->getLength());
-	Position result;
-
-	int count = 0;
-	int x ,y;
-	for(y = 1;y < MAX_HIGHT-1;++y)
-		for(x = 1;x < MAX_LENGTH-1;++x)
-			if(map[y][x] == ' ' && count < random)
-				++count;
-			else if(count == random && map[y][x] == ' ')
-				goto out;
-out:
-	result.set_y(y);
-	result.set_x(x);*/
-
 	int x = 0;
 	int y = 0;
 	Position result;
 
 	while(map[y][x] != ' ')
-    {
-        y = rand() % (MAX_HIGHT - 4) + 2;
-        x = rand() % (MAX_LENGTH - 4) + 2;
-    }
+    	{
+        	y = rand() % (MAX_HIGHT - 4) + 2;
+        	x = rand() % (MAX_LENGTH - 4) + 2;
+    	}
 
-	result.set_x(x);
-	result.set_y(y);
+	result.X = x;
+	result.Y = y;
 
 	return result;
 }
